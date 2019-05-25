@@ -24,6 +24,7 @@ module.exports = {
           onopen: this.onSocketOpen,
           onmessage: this.onSocketMessage
         });
+        console.log(socket);
         this.sockets.push(socket);
       }
     },
@@ -59,7 +60,6 @@ module.exports = {
      */
     onSocketMessage: function(event, socket) {
       var blob = event.data;
-
       if (typeof blob !== 'string') {
         var fileReader = new FileReader();
         fileReader.onload = e => {

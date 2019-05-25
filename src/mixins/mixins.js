@@ -106,12 +106,13 @@ module.exports = {
             // 机器人
             this.botAnalyze(data.sprite_list);
           } else {
+            // alert(data.sprite_list);
             this.buildMarkersByData(data.sprite_list);
           }
 
           if (this.mode === 'wide') {
             let _position = this.getNextPosition(); // 获取下一个查询点
-            
+
             if (_position) {
               setTimeout(() => {
                 this.sendMessage(

@@ -1,7 +1,7 @@
 import tempdata from './tempdata';
 
-const CUR_YAOLING_VERSION = 'sprite_0e4ebf1344bf35582f7504ee265f32eb.json'; // 妖灵数据库版本，如果与官方版本不一致，需要手动更新
-const APP_VERSION = 'v0.9.512.2316'; // 地图版本
+const CUR_YAOLING_VERSION = 'sprite_520b92e8846ac5147e1e7d752996a377.json'; // 妖灵数据库版本，如果与官方版本不一致，需要手动更新
+const APP_VERSION = 'v1.2.524.1301'; // 地图版本
 const API_KEY = '2LWBZ-FEQK6-KKYS2-M6WR4-PFGS5-RZBP3'; // 地图 api key
 
 const SUBSCRIBERS = ['落殇'];
@@ -32,6 +32,11 @@ const FILTER = {
       id: 2000238,
       name: '颜如玉',
       on: true
+    },
+    {
+      id: 2000040,
+      name: '羊秀才',
+      on: true
     }
   ],
   FILTER_RARE: [
@@ -40,13 +45,15 @@ const FILTER = {
     2000327, // 小蝙蝠
     2000265, // 香玉
     2000238, // 颜如玉
-    // 2000109, // 螺莉莉、
+    // 2000109, // 螺莉莉
     //2000078, // 布鲁 大量出现
     // 2000028, //小蝌蚪
     //2000191, // 麻将仔 大量出现
-    // 2000242, // 夜行枭
+    2000242, // 夜行枭
     2000147, // 檐上喵
-    2000188 // CoCo熊   todo: 檐上喵&CoCo熊官方雷达貌似不提供搜索
+    2000188, // CoCo熊   todo: 檐上喵&CoCo熊官方雷达貌似不提供搜索
+    2000040, //羊秀才
+    2000519  //弱智鱼
   ],
   FILTER_NEST: [
     2000321, // 木偶娃娃
@@ -83,6 +90,10 @@ const FILTER = {
     2000265, // 香玉
     2000238 // 颜如玉
   ],
+  FILTER_GHOST: [
+    2000271, //三魂
+    2000272, //七魄
+  ],
   FILTER_T1: tempdata.Data.filter(item => {
     return item.Level === 2;
   }).map(item => {
@@ -96,10 +107,10 @@ const FILTER = {
 };
 const SOCKET = {
   MAX_RECONNECT_TIME: 10, // 断线重连次数
-  MSG_INTERVAL: 3000, // 发送消息最小时间间隔
+  MSG_INTERVAL: 5000, // 发送消息最小时间间隔
   RECONNECT_TIMEOUT: 1000, // 断线重连时间
   URL:
-    'wss://publicld.gwgo.qq.com?account_value=0&account_type=1&appid=0&token=0' // 官方妖灵查询接口
+      'wss://publicld.gwgo.qq.com?account_value=0&account_type=1&appid=0&token=0' // 官方妖灵查询接口
 };
 
 const BOT = {
@@ -110,8 +121,8 @@ const BOT = {
 // MAX_RANGE: 以查询点为基准，范围查询的单元格数量
 // 例如MAX_RANGE=10。即是基准东南西北各+10，再加中心线，21*21的单元格数
 const WIDE_SEARCH = {
-  MAX_RANGE: 10, 
-  MAX_SOCKETS: 4, // 最大socket线程数
+  MAX_RANGE: 10,
+  MAX_SOCKETS: 6, // 最大socket线程数
   LAT_RANGE: 0.013754, // 单次查询纬度偏移量
   LNG_RANGE: 0.01795 // 单词查询经度偏移量
 };

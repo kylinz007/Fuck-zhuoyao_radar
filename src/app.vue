@@ -7,6 +7,7 @@
       <div id="info"><br/><span v-html="status"></span></div>
     </div>
     <div id="buttons">
+      <textarea id="yaolinginfos"></textarea>
       <el-button size="mini" @click="getYaolingInfo">妖灵</el-button>
       <!-- <el-button size="mini" @click="exportPosition">导出位置</el-button>
       <el-button size="mini" @click="importPosition">导入位置</el-button> -->
@@ -60,6 +61,7 @@ export default {
       auto_search: false,
       show_time: true,
       position_sync: true,
+      zbbc: false,
       wide: FILTER.FILTER_WIDE
     };
     if (!settings) {
@@ -165,11 +167,22 @@ export default {
      */
     buildMarkersByData: function(t) {
       if (t && t.length) {
+      var yaolingzb="";
         t.forEach(item => {
           if (
             this.fit[0] === 'special' ||
             this.fit.indexOf(item.sprite_id) > -1
           ) {
+            var newposition = this.gcj02towgs84((item.longtitude / 1e6), (item.latitude / 1e6))
+            // var lat = item.latitude; //纬度
+            // var lot = item.longtitude;//精度
+            yaolingzb+=(newposition[0].toString().substring(0,10)+","+newposition[1].toString().substring(0,10)+"\n");
+
+            if(this.settings.zbbc) {
+              $('#yaolinginfos').val($('#yaolinginfos').val()+yaolingzb);
+            } else {
+              $('#yaolinginfos').val(yaolingzb);
+            }
             this.addMarkers(item);
           }
         });
@@ -189,9 +202,9 @@ export default {
 
       // 先清除标记
       this.clearAllMarkers();
-
       if (this.mode === 'normal') {
-        this.sendMessage(this.initSocketMessage('1001'));
+        var aaa = this.initSocketMessage('1001');
+        this.sendMessage(aaa);
       } else {
         this.progressShow = true;
         this.lng_count = this.lat_count = 0;

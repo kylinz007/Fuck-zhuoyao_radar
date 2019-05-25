@@ -92,7 +92,7 @@ module.exports = {
      */
     initMap() {
       this.map = new qq.maps.Map(document.getElementById('qmap'), {
-        center: new qq.maps.LatLng(39.916527,116.397128),
+        center: new qq.maps.LatLng(29.579039,106.587184),
         zoom: 12 // 地图的中心地理坐标。
       });
 
@@ -171,7 +171,7 @@ module.exports = {
             var newposition = this.gcj02towgs84((yl.longtitude / 1e6), (yl.latitude / 1e6))
             var bbbbb = this.gcj02tobd09((yl.longtitude / 1e6), (yl.latitude / 1e6))
             var str = '<wpt lat="' + newposition[1] + '" lon="' + newposition[0] + '">'
-            var str2 = bbbbb[0] + ',' + bbbbb[1]
+            var str2 = newposition[1].toString().substring(0, 10) + ',' + newposition[0].toString().substring(0, 10)
             //获取标记的点击事件
             qq.maps.event.addListener(marker, 'click', function() {
 
@@ -182,7 +182,7 @@ module.exports = {
                 info.open();
                 lastinfo = info
                 info.setContent('<div style="text-align:center;white-space:nowrap;' +
-                    'margin:10px;"><textarea type="text" style="margin: 0px; width: 184px; height: 31px;">' + str + '</textarea><textarea type="text" style="margin: 0px; width: 184px; height: 31px;">' + str2 + '</textarea></div>');
+                    'margin:10px;"><textarea type="text" style="margin: 0px; width: 184px; height: 31px;">' + str + '</textarea><textarea id="str2" type="text" style="margin: 0px; width: 184px; height: 31px;"">' + str2 + '</textarea></div>');
                 info.setPosition(position);
             });
       marker.setIcon(icon);
