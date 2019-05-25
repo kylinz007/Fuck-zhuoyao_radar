@@ -22,13 +22,6 @@
           <p>{{ version }}</p>
           <br>
           <br/>
-          <iframe
-                  src="https://ghbtns.com/github-btn.html?user=liuzirui1122&repo=zhuoyao_radar&type=star&count=true&size=large"
-                  frameborder="0"
-                  scrolling="0"
-                  width="160px"
-                  height="30px"
-          ></iframe>
         </div>
         <div class="side-content">
           <div class="nav-filter">
