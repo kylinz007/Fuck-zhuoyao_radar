@@ -176,7 +176,7 @@ export default {
             var newposition = this.gcj02towgs84((item.longtitude / 1e6), (item.latitude / 1e6))
             // var lat = item.latitude; //纬度
             // var lot = item.longtitude;//精度
-            yaolingzb+=(newposition[0].toString().substring(0,10)+","+newposition[1].toString().substring(0,10)+"\n");
+            yaolingzb+=(newposition[1].toString().substring(0,10)+","+newposition[0].toString().substring(0,10)+"\n");
 
             if(this.settings.zbbc) {
               $('#yaolinginfos').val($('#yaolinginfos').val()+yaolingzb);
